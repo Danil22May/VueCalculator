@@ -4,8 +4,10 @@ import calculator from "@/components/calculator.vue";
 </script>
 
 <template>
-<div class="container"> <calculator />
-</div>
+
+  <div class="container">
+    <calculator />
+  </div>
 
 </template>
 
@@ -14,8 +16,7 @@ import calculator from "@/components/calculator.vue";
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 10px solid black;
-  height: 400px;
+  // border: 10px solid black;
+  height: 100vh;
 }
-
 </style>
