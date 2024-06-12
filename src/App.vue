@@ -1,6 +1,6 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import calculator from "@/components/calculator.vue";
+
 </script>
 
 <template>
@@ -9,9 +9,6 @@ import TheWelcome from './components/TheWelcome.vue'
     <calculator />
   </div>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style lang="scss" scoped>
