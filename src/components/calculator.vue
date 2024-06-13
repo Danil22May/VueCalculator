@@ -1,34 +1,49 @@
 <script setup>
+import { ref } from 'vue';
 
+let acumulador = ref ('');
+
+function append(numb){
+   acumulador.value += numb;
+   
+}
+
+function clear() {
+   acumulador.value = '';
+}
+
+function calc() {
+   acumulador.value = eval(acumulador.value);
+}
 </script>
 
 <template>
    <div class="calculator">
-      <div class="screen"></div>
+      <div class="screen"> {{ acumulador }} </div>
       <div class="switch-container">
          <div class="switch">Money Exchange</div>
          <div class="switch">Weather</div>
       </div>
       <div class="buttons">
-         <div class="btn">7</div>
-         <div class="btn">8</div>
-         <div class="btn">9</div>
-         <div class="btn operator">+</div>
+         <div @click="append('7')" class="btn">7</div>
+         <div @click="append('8')" class="btn">8</div>
+         <div @click="append('9')" class="btn">9</div>
+         <div @click="append('+')" class="btn operator">+</div>
 
-         <div class="btn">4</div>
-         <div class="btn">5</div>
-         <div class="btn">6</div>
-         <div class="btn operator">-</div>
+         <div @click="append('4')" class="btn">4</div>
+         <div @click="append('5')" class="btn">5</div>
+         <div @click="append('6')" class="btn">6</div>
+         <div @click="append('-')" class="btn operator">-</div>
 
-         <div class="btn">3</div>
-         <div class="btn">2</div>
-         <div class="btn">1</div>
-         <div class="btn operator">*</div>
+         <div @click="append('3')" class="btn">3</div>
+         <div @click="append('2')" class="btn">2</div>
+         <div @click="append('1')" class="btn">1</div>
+         <div @click="append('*')" class="btn operator">*</div>
 
-         <div class="btn operator">C</div>
-         <div class="btn">0</div>
-         <div class="btn operator">=</div>
-         <div class="btn operator">/</div>
+         <div @click="clear" class="btn operator">C</div>
+         <div @click="append('0')" class="btn">0</div>
+         <div @click="calc" class="btn operator">=</div>
+         <div @click="append('/')" class="btn operator">/</div>
       </div>
    </div>
 </template>
@@ -62,6 +77,10 @@ $background-primary: hsl(0, 1%, 35%);
    cursor: pointer;
 }
 
+.btn:hover {
+   background-color: hsl(0, 1%, 25%)
+}
+
 .switch-container {
    display: flex;
    gap: 50px;
@@ -80,6 +99,10 @@ $background-primary: hsl(0, 1%, 35%);
    color: rgb(46, 46, 46);
    height: 100px;
    width: 350px;
+   font-size: 70px;
+   text-align: right;
+   padding: 10px;
+   border-radius: 15px;
 }
 
 .operator {
@@ -88,6 +111,9 @@ $background-primary: hsl(0, 1%, 35%);
    font-weight: bold;
 }
 
+.operator:hover {
+   background-color: hsl(32, 81%, 36%);
+}
 
 .buttons {
    display: flex;
