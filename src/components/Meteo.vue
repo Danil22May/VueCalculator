@@ -1,16 +1,18 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 let response = ref({});
-let json = reactive({});
+const json = ref({});
 const city = ref("");
 let municipio = ref({});
 let temperatures = ref("");
 onMounted(async () => {
     response = await fetch(`https://www.el-tiempo.net/api/json/v2/provincias/33`);
-    json = await response.json();
+    let result = await response.json();
+    json.value = result
+    // console.log(json)
 })
 function updateCity() {
-    const foundCity = json.ciudades.find(element => element.name === city.value)
+    const foundCity = json.value.ciudades.find(element => element.name === city.value)
     if (foundCity) {
         municipio.value = foundCity;
         temperatures.value = municipio.value.temperatures.max;

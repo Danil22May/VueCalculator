@@ -1,5 +1,5 @@
 <script setup>
-import Calculator from "@/components/Calculator.vue";
+import calculator from "@/components/calculator.vue";
 import Meteo from "@/components/Meteo.vue";
 
 </script>
@@ -8,7 +8,7 @@ import Meteo from "@/components/Meteo.vue";
 
   <div class="container">
     <!-- <Meteo /> -->
-    <Calculator />
+    <calculator />
   </div>
 
 </template>
