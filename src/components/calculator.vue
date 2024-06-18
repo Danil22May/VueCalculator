@@ -1,11 +1,14 @@
 <script setup>
 import { ref } from 'vue';
-
-let acumulador = ref ('');
-
-function append(numb){
+import Meteo from './Meteo.vue';
+const openMeteo = ref(false);
+function openWeather() {
+   !openMeteo.value ? openMeteo.value = true : openMeteo.value = false;
+}
+let acumulador = ref('');
+function append(numb) {
    acumulador.value += numb;
-   
+
 }
 
 function clear() {
@@ -19,10 +22,16 @@ function calc() {
 
 <template>
    <div class="calculator">
-      <div class="screen"> {{ acumulador }} </div>
+      <div class="screen-container">
+         <Meteo v-if="openMeteo" />
+         <div class="screen">
+            {{ acumulador }}
+         </div>
+      </div>
+
       <div class="switch-container">
          <div class="switch">Money Exchange</div>
-         <div class="switch">Weather</div>
+         <div class="switch" @click="openWeather">Weather</div>
       </div>
       <div class="buttons">
          <div @click="append('7')" class="btn">7</div>
@@ -51,6 +60,13 @@ function calc() {
 <style lang="scss" scoped>
 $background-primary: hsl(0, 1%, 35%);
 
+.meteo-container {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+
+}
+
 .calculator {
    display: flex;
    flex-direction: column;
@@ -63,7 +79,7 @@ $background-primary: hsl(0, 1%, 35%);
    gap: 19px;
    padding: 20px;
    width: 400px;
-   height: 600px;
+   height: 650px;
 }
 
 .btn {
@@ -78,13 +94,12 @@ $background-primary: hsl(0, 1%, 35%);
 }
 
 .btn:hover {
-   background-color: hsl(0, 1%, 25%)
+   background-color: hsl(0, 1%, 25%);
 }
 
 .switch-container {
    display: flex;
    gap: 50px;
-   cursor: pointer;
 }
 
 .switch {
@@ -92,6 +107,7 @@ $background-primary: hsl(0, 1%, 35%);
    color: white;
    border-radius: 15px;
    padding: 15px;
+   cursor: pointer;
 }
 
 .screen {
@@ -121,5 +137,14 @@ $background-primary: hsl(0, 1%, 35%);
    flex-wrap: wrap;
    gap: 15px;
    margin-bottom: 15px;
+}
+
+.screen-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: #959595;
+   border-radius: 15px;
+   // justify-content: center;
 }
 </style>
