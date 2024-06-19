@@ -1,14 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 import Meteo from './Meteo.vue';
+import Money from './Money.vue';
+
 const openMeteo = ref(false);
+const openMoney = ref(false);
+
 function openWeather() {
    !openMeteo.value ? openMeteo.value = true : openMeteo.value = false;
 }
+
+function openExchange() {
+   !openMoney.value ? openMoney.value = true : openMoney.value = false;
+}
+
 let acumulador = ref('');
 function append(numb) {
    acumulador.value += numb;
-
 }
 
 function clear() {
@@ -23,16 +31,19 @@ function calc() {
 <template>
    <div class="calculator">
       <div class="screen-container">
-         <Meteo v-if="openMeteo" />
+         <Money v-if="openMoney" /> 
+         <Meteo v-if="openMeteo" />  
+
          <div class="screen">
             {{ acumulador }}
          </div>
       </div>
 
       <div class="switch-container">
-         <div class="switch">Money Exchange</div>
+         <div class="switch" @click="openExchange">Money Exchange</div>
          <div class="switch" @click="openWeather">Weather</div>
       </div>
+
       <div class="buttons">
          <div @click="append('7')" class="btn">7</div>
          <div @click="append('8')" class="btn">8</div>
@@ -53,6 +64,7 @@ function calc() {
          <div @click="append('0')" class="btn">0</div>
          <div @click="calc" class="btn operator">=</div>
          <div @click="append('/')" class="btn operator">/</div>
+         <div @click="append('.')" class="btn operator">.</div>
       </div>
    </div>
 </template>
@@ -64,7 +76,6 @@ $background-primary: hsl(0, 1%, 35%);
    display: flex;
    justify-content: center;
    width: 100%;
-
 }
 
 .calculator {
@@ -86,10 +97,10 @@ $background-primary: hsl(0, 1%, 35%);
    background-color: $background-primary;
    color: white;
    font-size: 24px;
-   height: 80px;
-   width: 80px;
+   height: 70px;
+   width: 70px;
    text-align: center;
-   font-size: 60px;
+   font-size: 45px;
    cursor: pointer;
 }
 
