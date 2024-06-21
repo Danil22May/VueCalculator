@@ -1,9 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import Meteo from './Meteo.vue';
+import Exchanger from './Exchanger.vue';
 const openMeteo = ref(false);
+const openMoney = ref(false);
 function openWeather() {
    !openMeteo.value ? openMeteo.value = true : openMeteo.value = false;
+}
+function openExchanger() {
+   !openMoney.value ? openMoney.value = true : openMoney.value = false;
 }
 let acumulador = ref('');
 function append(numb) {
@@ -23,6 +28,7 @@ function calc() {
 <template>
    <div class="calculator">
       <div class="screen-container">
+         <Exchanger v-if="openMoney" />
          <Meteo v-if="openMeteo" />
          <div class="screen">
             {{ acumulador }}
@@ -30,7 +36,7 @@ function calc() {
       </div>
 
       <div class="switch-container">
-         <div class="switch">Money Exchange</div>
+         <div class="switch" @click="openExchanger">Money Exchange</div>
          <div class="switch" @click="openWeather">Weather</div>
       </div>
       <div class="buttons">
@@ -53,6 +59,11 @@ function calc() {
          <div @click="append('0')" class="btn">0</div>
          <div @click="calc" class="btn operator">=</div>
          <div @click="append('/')" class="btn operator">/</div>
+         <div @click="append('.')" class="btn operator M">M+</div>
+         <div @click="append('.')" class="btn operator M">MR</div>
+         <div @click="append('.')" class="btn operator M">MR</div>
+         <div @click="append('.')" class="btn operator">.</div>
+
       </div>
    </div>
 </template>
@@ -75,11 +86,12 @@ $background-primary: hsl(0, 1%, 35%);
    // align-items: flex-end;
    background-color: #d9d9d9;
    border-radius: 25px;
-   border: 1px solid black;
+   border: 3px solid rgb(132, 132, 132);
    gap: 19px;
    padding: 20px;
-   width: 400px;
-   height: 650px;
+   width: 450px;
+   height: 750px;
+   box-shadow: 2px 2px 5px gray;
 }
 
 .btn {
@@ -146,5 +158,11 @@ $background-primary: hsl(0, 1%, 35%);
    background-color: #959595;
    border-radius: 15px;
    // justify-content: center;
+}
+
+.M {
+   font-size: 40px;
+   background-color: #959595;
+   color: white;
 }
 </style>

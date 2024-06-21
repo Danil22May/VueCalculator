@@ -1,13 +1,10 @@
 <script setup>
 import calculator from "@/components/calculator.vue";
-import Meteo from "@/components/Meteo.vue";
-
 </script>
 
 <template>
 
   <div class="container">
-    <!-- <Meteo /> -->
     <calculator />
   </div>
 
